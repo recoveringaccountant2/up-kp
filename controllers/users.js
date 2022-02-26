@@ -1,30 +1,52 @@
 const User = require('../models/user');
+const Asset = require('../models/asset');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 const { v4: uuidv4 } = require('uuid');
 const S3 = require('aws-sdk/clients/s3');
-const s3 = new S3(); // initialize the construcotr
+const s3 = new S3(); // initialize the constructor
 // now s3 can crud on our s3 buckets
+
+const BUCKET = process.env.BUCKET;
 
 module.exports = {
   signup,
-  login
+  login,
+  dashboard
 };
 
+async function dashboard(req, res){
+  try {
+    // First find the user using the params from the request
+    // findOne finds first match, its useful to have unique usernames!
+    const user = await User.findOne({username: req.params.username})
+    // Then find all the posts that belong to that user
+    if(!user) return res.status(404).json({err: 'User not found'})
+
+    const posts = await Asset.find({user: user._id}).populate("user").exec();
+    console.log(assets, ' these are the assets')
+    res.status(200).json({assets: assets, user: user})
+  } catch(err){
+    console.log(err)
+    res.status(400).json({err})
+  }
+}
+
+
 function signup(req, res) {
-  console.log(req.body, req.file)
+  console.log(req.body, " <- req.body", req.file, " <-- req.file");
 
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
 
-  // FilePath unique name to be saved to our butckt
+  // FilePath unique name to be saved to our bucket
   const filePath = `${uuidv4()}/${req.file.originalname}`
   const params = {Bucket: process.env.BUCKET_NAME, Key: filePath, Body: req.file.buffer};
   //your bucket name goes where collectorcat is 
   //////////////////////////////////////////////////////////////////////////////////
   s3.upload(params, async function(err, data){
-    console.log(data, 'from aws') // data.Location is our photoUrl that exists on aws
+    console.log(data, '<- from aws') // data.Location is our photoUrl that exists on aws
     const user = new User({...req.body, photoUrl: data.Location});
     try {
       await user.save();
@@ -34,9 +56,6 @@ function signup(req, res) {
       // Probably a duplicate email
       res.status(400).json(err);
     }
-
-
-
   })
   //////////////////////////////////////////////////////////////////////////////////
  
@@ -45,7 +64,7 @@ function signup(req, res) {
 async function login(req, res) {
   try {
     const user = await User.findOne({email: req.body.email});
-    console.log(user, ' this user in login')
+    console.log(user, '<- this user in logged in')
     if (!user) return res.status(401).json({err: 'bad credentials'});
     // had to update the password from req.body.pw, to req.body password
     user.comparePassword(req.body.password, (err, isMatch) => {
