@@ -34,7 +34,7 @@ async function dashboard(req, res){
 
 
 function signup(req, res) {
-  console.log(req.body, " <- req.body", req.file, " <-- req.file");
+  console.log(req.body, " <-- signup() req.body", req.file, " <-- signup() req.file");
 
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
