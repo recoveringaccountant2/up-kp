@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import { Button, Checkbox, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
 
@@ -9,10 +9,11 @@ export default function SignUpPage(props) {
   const [error, setError] = useState('')
   const [state, setState] = useState({
     username: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    smsNotifications: '',
+    // smsNotifications: '',
     password: '',
     passwordConf: ''
   })
@@ -21,15 +22,15 @@ export default function SignUpPage(props) {
 
 
   const navigate = useNavigate() // navigate hook from react-router
- 
-  function handleChange(e){
+
+  function handleChange(e) {
     setState({
       ...state,
       [e.target.name]: e.target.value
     })
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
 
     // create formData from our state
@@ -48,7 +49,7 @@ export default function SignUpPage(props) {
 
     //option 2 use for .. in loop to append the rest of the items to our form Data
 
-    for (let key in state){
+    for (let key in state) {
       formData.append(key, state[key])
     }
 
@@ -64,7 +65,7 @@ export default function SignUpPage(props) {
       // and set the user state in the App.js componennt
       navigate('/') // < route the user to our home component (all our routes are defined in App.js)
 
-    } catch(err){
+    } catch (err) {
       // err, is defined in the throw new Error in the 
       // userServiceSignUp
       setError(err.message)
@@ -72,7 +73,7 @@ export default function SignUpPage(props) {
 
   }
 
-  function handleFileInput(e){
+  function handleFileInput(e) {
     console.log(e.target.files);
     setSelectedFile(e.target.files[0])
   }
@@ -95,20 +96,20 @@ export default function SignUpPage(props) {
             />
 
             {/* <Form.Group> */}
-              <Form.Input
-                name="firstName"
-                placeholder="first name"
-                value={state.firstName}
-                onChange={handleChange}
-                required
-              />
-              <Form.Input
-                name="lastName"
-                placeholder="last name"
-                value={state.lastName}
-                onChange={handleChange}
-                required
-              />
+            <Form.Input
+              name="firstName"
+              placeholder="first name"
+              value={state.firstName}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="lastName"
+              placeholder="last name"
+              value={state.lastName}
+              onChange={handleChange}
+              required
+            />
             {/* </Form.Group> */}
 
             <Form.Input
@@ -120,15 +121,15 @@ export default function SignUpPage(props) {
               required
             />
             {/* <Form.Group> */}
-              <Form.Input
-                type="phone"
-                name="phone"
-                placeholder="phone"
-                value={state.phone}
-                onChange={handleChange}
-                required
-              />
-{/* 
+            <Form.Input
+              type="phone"
+              name="phone"
+              placeholder="phone"
+              value={state.phone}
+              onChange={handleChange}
+              required
+            />
+            {/* 
               <Checkbox
 
                 name="smsNotifications"
@@ -168,10 +169,10 @@ export default function SignUpPage(props) {
             </Form.Field>
 
 
-            <Button 
+            <Button
               fluid
               size="large"
-              type="submit" 
+              type="submit"
               className="btn"
             >
               Signup

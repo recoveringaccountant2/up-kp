@@ -23,7 +23,7 @@ async function dashboard(req, res){
     // Then find all the posts that belong to that user
     if(!user) return res.status(404).json({err: 'User not found'})
 
-    const posts = await Asset.find({user: user._id}).populate("user").exec();
+    const assets = await Asset.find({user: user._id}).populate("user").exec();
     console.log(assets, ' these are the assets')
     res.status(200).json({assets: assets, user: user})
   } catch(err){
@@ -33,7 +33,7 @@ async function dashboard(req, res){
 }
 
 
-function signup(req, res) {
+async function signup(req, res) {
   console.log(req.body, " <-- signup() req.body", req.file, " <-- signup() req.file");
 
   //////////////////////////////////////////////////////////////////////////////////
@@ -42,12 +42,12 @@ function signup(req, res) {
 
   // FilePath unique name to be saved to our bucket
   const filePath = `${uuidv4()}/${req.file.originalname}`
-  const params = {Bucket: process.env.BUCKET_NAME, Key: filePath, Body: req.file.buffer};
+  const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
   //your bucket name goes where collectorcat is 
   //////////////////////////////////////////////////////////////////////////////////
-  s3.upload(params, async function(err, data){
+  s3.upload(params, async function (err, data){
     console.log(data, '<- from aws') // data.Location is our photoUrl that exists on aws
-    const user = new User({...req.body, photoUrl: data.Location});
+    const user = new User({ ...req.body, photoUrl: data.Location});
     try {
       await user.save();
       const token = createJWT(user); // user is the payload so this is the object in our jwt
@@ -56,7 +56,7 @@ function signup(req, res) {
       // Probably a duplicate email
       res.status(400).json(err);
     }
-  })
+  });
   //////////////////////////////////////////////////////////////////////////////////
  
 }

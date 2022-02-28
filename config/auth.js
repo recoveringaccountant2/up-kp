@@ -11,7 +11,8 @@ module.exports = function(req, res, next) {
     jwt.verify(token, SECRET, function(err, decoded) {
       if (err) {
         console.log('error in jwt verify')
-        next(err);
+        next(err);  // starter code vs code below
+        // res.status(401).json({err})
       } else {
         // It's a valid token, so add user to req
         req.user = decoded.user;    

@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3();
 
-const BUCKET_NAME = process.env.BUCKET_NAME
+const BUCKET = process.env.BUCKET_NAME
 
 module.exports = {
     create,
@@ -15,7 +15,7 @@ function create(req, res){
 	console.log(req.body, " <- req.body", req.file, "<- photo", req.user, "<- req.user")
     try {
         const filePath = `${uuidv4()}/${req.file.originalname}`
-        const params = {Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer};
+        const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
         s3.upload(params, async function(err, data){
 
             const asset = await Asset.create({
