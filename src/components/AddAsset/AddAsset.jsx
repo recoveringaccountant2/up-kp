@@ -5,7 +5,14 @@ import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react'
 export default function AddAssetForm(props){
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
-    caption: ''
+    assetType: '',
+    year: '',
+    make: '',
+    model: '',
+    description: '',
+    inServiceDate: '',
+    beginningMileage: '',
+    currentMileage: ''
   })
 
   function handleFileInput(e){
@@ -24,11 +31,18 @@ export default function AddAssetForm(props){
     e.preventDefault()
              
     const formData = new FormData()
+    formData.append('assetType', state.assetType)
+    formData.append('year', state.year)
+    formData.append('make', state.make)
+    formData.append('model', state.model)
+    formData.append('description', state.description)
+    formData.append('inServiceDate', state.inServiceDate)
+    formData.append('beginningMileage', state.beginningMileage)
+    formData.append('currentMileage', state.currentMileage)
     formData.append('photo', selectedFile); // this key matches the key in multer in the 
 	// routes/api/posts create route upload.single('photo')
-    formData.append('caption', state.caption)
-   
-	props.handleAddPost(formData)
+
+	props.handleAddAsset(formData)
     // Have to submit the form now! We need a function!
   }
 
@@ -43,9 +57,65 @@ export default function AddAssetForm(props){
             
               <Form.Input
                   className="form-control"
-                  name="caption"
-                  value={state.caption}
-                  placeholder="What's on your pups mind?"
+                  name="assetType"
+                  value={state.assetType}
+                  placeholder="automobile, chainsaw, dirt bike..."
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="year"
+                  value={state.year}
+                  placeholder="year"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="make"
+                  value={state.make}
+                  placeholder="make"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="model"
+                  value={state.model}
+                  placeholder="model"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="description"
+                  value={state.description}
+                  placeholder="description"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="inServiceDate"
+                  value={state.inServiceDate}
+                  placeholder="in service date"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="beginningMileage"
+                  value={state.beginningMileage}
+                  placeholder="beginning mileage"
+                  onChange={handleChange}
+                  required
+              />   
+              <Form.Input
+                  className="form-control"
+                  name="currentMileage"
+                  value={state.currentMileage}
+                  placeholder="current mileage"
                   onChange={handleChange}
                   required
               />   
@@ -60,12 +130,12 @@ export default function AddAssetForm(props){
                 type="submit"
                 className="btn"
               >
-                ADD PUPPY
+                ADD ASSET
               </Button>
             </Form>
           </Segment>
       </Grid.Column>
     </Grid>
-   
   ); 
 }
+

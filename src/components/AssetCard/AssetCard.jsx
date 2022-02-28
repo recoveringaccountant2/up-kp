@@ -2,35 +2,36 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 
-function PostCard({post, isProfile}) { 
+function AssetCard({asset, isDashboard}) { 
  
   return (
-    <Card key={post._id}>
+    <Card key={asset._id}>
    
       <Card.Content textAlign='left'>
           <Image
               floated='left'
               size='large'
               avatar
-              src={ post?.user?.photoUrl ? post.user.photoUrl : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
+              src={ asset?.user?.photoUrl ? asset.user.photoUrl : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
           />
-          <Card.Header floated="right">{post?.user?.username}</Card.Header>
+          <Card.Header floated="right">{asset?.user?.username}</Card.Header>
       </Card.Content>
   
   
-      <Image src={`${post.photoUrl}`} wrapped ui={false} />
+      <Image src={`${asset.photoUrl}`} wrapped ui={false} />
       <Card.Content>
       <Card.Description>
-        {post.caption}
+        {asset.make}
+        {asset.model}
       </Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={'right'}>
-        <Icon name={'heart'} size='large' color={'grey'} />
-        {post.likes.length} Likes
+        {/* <Icon name={'heart'} size='large' color={'grey'} />
+        {post.likes.length} Likes */}
           
       </Card.Content>
     </Card>
   );
 }
 
-export default PostCard;
+export default AssetCard;

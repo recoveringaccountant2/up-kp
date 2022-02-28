@@ -16,7 +16,7 @@ const serviceSchema = mongoose.Schema({
 
 const assetSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  type: String,
+  assetType: String,
   year: Number,
   make: String,
   model: String,

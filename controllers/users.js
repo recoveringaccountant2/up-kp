@@ -43,16 +43,20 @@ async function signup(req, res) {
   // FilePath unique name to be saved to our bucket
   const filePath = `${uuidv4()}/${req.file.originalname}`
   const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
+  console.log(params, "<-- params from signup function")
   //your bucket name goes where collectorcat is 
   //////////////////////////////////////////////////////////////////////////////////
   s3.upload(params, async function (err, data){
+    console.log(err, "<-- first err from signup function")
     console.log(data, '<- from aws') // data.Location is our photoUrl that exists on aws
     const user = new User({ ...req.body, photoUrl: data.Location});
+
     try {
       await user.save();
       const token = createJWT(user); // user is the payload so this is the object in our jwt
       res.json({ token });
     } catch (err) {
+      console.log(err, "<-- this is error from signup function")
       // Probably a duplicate email
       res.status(400).json(err);
     }
