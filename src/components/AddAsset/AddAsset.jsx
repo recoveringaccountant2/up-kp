@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react'
+import { Button, Dropdown, DropdownItem, DropdownMenu, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
 export default function AddAssetForm(props){
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
+    nickName: '',
     assetType: '',
     year: '',
     make: '',
@@ -31,6 +32,7 @@ export default function AddAssetForm(props){
     e.preventDefault()
              
     const formData = new FormData()
+    formData.append('nickName', state.nickName)
     formData.append('assetType', state.assetType)
     formData.append('year', state.year)
     formData.append('make', state.make)
@@ -57,19 +59,44 @@ export default function AddAssetForm(props){
             
               <Form.Input
                   className="form-control"
-                  name="assetType"
-                  value={state.assetType}
-                  placeholder="automobile, chainsaw, dirt bike..."
+                  name="nickName"
+                  value={state.nickName}
+                  placeholder="nickname"
                   onChange={handleChange}
                   required
               />   
+
+{/* 
+              <Form.Input>
+                className="form-control"
+                name="assetType"
+                value={state.assetType}
+                placeholder="automobile, chainsaw, dirt bike..."
+                onChange={handleChange}
+                required
+                <Dropdown>
+                  <DropdownMenu>
+                    <DropdownItem></DropdownItem>
+                    <DropdownItem>automobile</DropdownItem>
+                    <DropdownItem>chainsaw</DropdownItem>
+                    <DropdownItem>dirt bike</DropdownItem>
+                    <DropdownItem>generator</DropdownItem>
+                    <DropdownItem>lawn care</DropdownItem>
+                    <DropdownItem>motorcycle</DropdownItem>
+                    <DropdownItem>snow blower</DropdownItem>
+                    <DropdownItem>other</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </Form.Input>   
+ */}
+
               <Form.Input
                   className="form-control"
                   name="year"
                   value={state.year}
                   placeholder="year"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -77,7 +104,7 @@ export default function AddAssetForm(props){
                   value={state.make}
                   placeholder="make"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -85,7 +112,7 @@ export default function AddAssetForm(props){
                   value={state.model}
                   placeholder="model"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -93,7 +120,7 @@ export default function AddAssetForm(props){
                   value={state.description}
                   placeholder="description"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -101,7 +128,7 @@ export default function AddAssetForm(props){
                   value={state.inServiceDate}
                   placeholder="in service date"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -109,7 +136,7 @@ export default function AddAssetForm(props){
                   value={state.beginningMileage}
                   placeholder="beginning mileage"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                   className="form-control"
@@ -117,7 +144,7 @@ export default function AddAssetForm(props){
                   value={state.currentMileage}
                   placeholder="current mileage"
                   onChange={handleChange}
-                  required
+                  // required
               />   
               <Form.Input
                 className="form-control"

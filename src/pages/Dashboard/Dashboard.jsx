@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import Nav from '../../components/Nav/Nav'
 import Header from '../../components/Header/Header';
 import AddAsset from '../../components/AddAsset/AddAsset'
 import AssetList from '../../components/AssetList/AssetList'
 import * as assetsAPI from '../../utils/assetApi';
 // import {create, getAll} from '../../utils/postApi'
-import {  Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 
-export default function Dashboard(){
+export default function Dashboard({ user, handleLogout }){
   const [assets, setAssets] = useState([])
 
 	// C create in Crud
@@ -39,21 +40,23 @@ export default function Dashboard(){
   
     return (
       <Grid centered >
+
         <Grid.Row>
           <Grid.Column>
-            <Header/>
+            {/* <Header/> */}
+            <Nav user={user} handleLogout={handleLogout} />
+
+
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <AddAsset handleAddAsset={handleAddAsset}/>
-          </Grid.Column>
-        </Grid.Row>
+
+
         <Grid.Row>
         <Grid.Column style={{maxWidth: 450}}>
           <AssetList assets={assets}  numPhotosCol={1}  />
         </Grid.Column>
         </Grid.Row>
+
     </Grid>
     )
 
@@ -69,38 +72,3 @@ export default function Dashboard(){
 
 
 
-
-
-
-// import React from 'react'
-// import { Grid, Image } from 'semantic-ui-react'
-
-// const GridExampleDividedPhrase = () => (
-//   <Grid columns='three' divided>
-//     <Grid.Row>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//     </Grid.Row>
-
-//     <Grid.Row>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src='/images/wireframe/media-paragraph.png' />
-//       </Grid.Column>
-//     </Grid.Row>
-//   </Grid>
-// )
-
-// export default GridExampleDividedPhrase

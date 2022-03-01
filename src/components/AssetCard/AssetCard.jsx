@@ -3,27 +3,42 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 
 
 function AssetCard({asset, isDashboard, removeAsset}) { 
- 
+
   return (
     <Card key={asset._id}>
    
       <Card.Content textAlign='left'>
           <Image
               floated='left'
-              size='large'
-              avatar
+              size='small'
+              // avatar
               // src={ asset?.user?.photoUrl ? asset.user.photoUrl : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
               src={`${asset.photoUrl}`}
           />
           {/* <Card.Header floated="right">{asset?.user?.username}</Card.Header> */}
-          <Card.Header floated="right">
-            {asset.description}
-          
-          </Card.Header>
+          <Card.Header floated="right">{asset?.user?.username}</Card.Header>
+
+
+
+          {/* <Card.Header floated="right" text={ asset }>
+
+          {`${asset.user}`}
+          {`${asset.nickName}`}
+          {`${asset.year}`}
+          {`${asset.make}`}
+          {`${asset.model}`}
+          {`${asset.photoUrl}`}
+
+          </Card.Header> */}
+
+
       </Card.Content>
   
-  
-      <Image src={`${asset.photoUrl}`} wrapped ui={false} />
+
+
+
+
+      {/* <Image src={`${asset.photoUrl}`} wrapped ui={false} /> */}
 
       <Card.Content>
       <Card.Description>

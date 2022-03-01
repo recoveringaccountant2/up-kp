@@ -16,7 +16,12 @@ const serviceSchema = mongoose.Schema({
 
 const assetSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  assetType: String,
+  nickName: String,
+  // assetType: {
+  //   type: String,
+  //   enum : ['', 'automobile','chainsaw', 'dirt bike', 'generator', 'lawn care', 'motorcycle', 'snow blower', 'other'],
+  //   default: ''
+  // },
   year: Number,
   make: String,
   model: String,
