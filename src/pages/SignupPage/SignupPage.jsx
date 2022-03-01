@@ -81,6 +81,8 @@ export default function SignUpPage(props) {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
+      <Header as="h2">UpKeep - World's <span>CRUD</span>diest <span>MERN</span>tenance Tool</Header>
+
         <Header as="h2" textAlign="center">
           <Image src="logo192.png" /> Sign Up
         </Header>

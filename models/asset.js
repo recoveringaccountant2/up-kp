@@ -7,7 +7,7 @@ const partsSchema = mongoose.Schema({
 })
 
 const serviceSchema = mongoose.Schema({
-  date: Date,
+  serviceDate: Date,
   description: String,
   mileage: Number,
   nextServiceDue: Date,

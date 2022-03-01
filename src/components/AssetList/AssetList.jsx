@@ -5,7 +5,7 @@ import AssetCard from "../AssetCard/AssetCard";
 export default function AssetList({ assets, numPhotosCol }) {
 
   if(!assets.length){
-	  return <span>There are no assets</span>
+	  return <span>There are no assets!!</span>
   }
 
   return (
