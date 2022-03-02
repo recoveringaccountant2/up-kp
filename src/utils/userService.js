@@ -28,11 +28,9 @@ function getUser() {
 }
 
 function logout() {
-  console.log("userService.js logout function log 1/3")
+  console.log("userService.js logout function started 1/2")
   tokenService.removeToken();
-  console.log("userService.js logout function log 2/3")
   console.log("logged out!")
-  console.log("userService.js logout function log 3/3")
 }
 
 function login(creds) {

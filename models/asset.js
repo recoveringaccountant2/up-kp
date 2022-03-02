@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
-const partsSchema = mongoose.Schema({
-  description: String,
-  quantity: Number,
-  photoUrl: String
-})
+// const partsSchema = mongoose.Schema({
+//   description: String,
+//   quantity: Number,
+//   photoUrl: String
+// })
 
 const serviceSchema = mongoose.Schema({
   serviceDate: Date,
   description: String,
   mileage: Number,
   nextServiceDue: Date,
-  photoUrl: String
+  // photoUrl: String
   })
 
 const assetSchema = new mongoose.Schema({
@@ -30,8 +30,8 @@ const assetSchema = new mongoose.Schema({
   beginningMileage: Number,
   currentMileage: Number,
   photoUrl: String,
-  service: [serviceSchema],
-  parts: [partsSchema]
+  service: [serviceSchema]
+  // parts: [partsSchema]
 })
 
 module.exports = mongoose.model('Asset', assetSchema);

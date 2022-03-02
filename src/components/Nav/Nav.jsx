@@ -15,35 +15,26 @@ function Nav({ user, handleLogout }) {
 
       <Header as="h2" floated="left">
 
-        {/* <Link to="/">
-          <Icon name="list"></Icon>
-          Dashboard
-        </Link> */}
+        <Link to="/">
+          {/* <Icon name="list"></Icon> */}
+          [Dashboard] &nbsp; &nbsp;
+        </Link>
 
         <Link to="/newasset">
-          <Icon name="plus"></Icon>
-          New Asset
+          {/* <Icon name="plus"></Icon> */}
+          [New Asset]
         </Link>
 
       </Header>
 
-
-
       <Header as="h2" floated="right">
 
-        {/* <Link to={`/${user.username}`}>
-          <Image
-            src={
-              user?.photoUrl
-                ? user?.photoUrl
-                : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-            }
-            avatar
-          ></Image>
-        </Link> */}
+        <Link to="/" >
+          [Hiya {user.firstName}!] &nbsp; &nbsp;
+        </Link>
 
-        <Link to="/logout" onClick={handleLogout}>
-          Logout
+        <Link to="/" onClick={handleLogout}>
+          [Logout]
         </Link>
 
       </Header>

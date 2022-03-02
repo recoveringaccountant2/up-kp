@@ -1,7 +1,8 @@
 import React from 'react';
 import * as assetApi from "../../utils/assetApi";
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
-
+// import ServiceList from "../../components/ServiceList/ServiceList";
+import AddService from "../../components/AddService/AddService";
 
 function AssetCard({asset, isDashboard, removeAsset}) { 
 
@@ -22,96 +23,91 @@ function AssetCard({asset, isDashboard, removeAsset}) {
           <Image
               floated='left'
               size='small'
-              // avatar
-              // src={ asset?.user?.photoUrl ? asset.user.photoUrl : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
               src={`${asset.photoUrl}`}
           />
-          {/* <Card.Header floated="right">{asset?.user?.username}</Card.Header> */}
-          <Card.Header floated="right">{asset?.user?.username}</Card.Header>
+          <Card.Header floated="right">
+            {asset.nickName}<br></br>
 
+            {`${asset.year} ${asset.make} ${asset.model}`}<br></br><br></br><br></br>
 
+            <a onClick={deleteAsset} >
+              <Icon name={'trash'} size='large' color={'grey'} />
+              Delete Asset
+            </a>
 
-          <Card.Header floated="right" text={ asset }>
-
-          {/* {`${asset.user}`}
-          {`${asset.nickName}`}
-          {`${asset.year}`}
-          {`${asset.make}`}
-          {`${asset.model}`} */}
-
-          {`${asset.nickName}`}
-          {`${asset._id}`}
-          {`${asset.photoUrl}`}
-
-          </Card.Header> 
-
+          </Card.Header>
 
       </Card.Content>
   
 
 
 
-
-      {/* <Image src={`${asset.photoUrl}`} wrapped ui={false} /> */}
-
       <Card.Content>
+
+      <Card.Header textAlign='center'><Icon name={'wrench'} size='large' color={'grey'} />Service History</Card.Header>
+
       <Card.Description>
-        {asset.model}
-        put asset details here with accordian
+
+        {/* <ServiceList /> */}
+
       </Card.Description>
       </Card.Content>
 
 
+      <Card.Content>
 
+      <Card.Description>
+
+        <AddService />
+
+      </Card.Description>
+      </Card.Content>
 
 
       <Card.Content extra textAlign={'center'}>
-
+{/* 
         <Icon name={'zoom-in'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
+
         View Asset Details
 
+
         <Icon name={'edit'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
+
         Edit Asset
+ */}
 
-        {/* <Icon name={'trash'} size='large' color={'grey'} onClick={removeAsset(asset._id)} /> */}
+        <a onClick={deleteAsset} >
         <Icon name={'trash'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
         Delete Asset
-
-        <Button icon='trash alternate' onClick={deleteAsset} />
-
+        </a>
 
       </Card.Content>
 
 
 
-      <Card.Content extra textAlign={'center'}>
+      {/* <Card.Content extra textAlign={'center'}>
 
         <Icon name={'wrench'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
+
         Add Service
 
         <Icon name={'book'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
+
         Service History
 
-      </Card.Content>
+      </Card.Content> */}
 
-
+{/* 
       <Card.Content extra textAlign={'center'}>
 
         <Icon name={'book'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
         Add Part
 
         <Icon name={'cogs'} size='large' color={'grey'} />
-        {/* {asset.services.length}  */}
         Parts Inventory
 
       </Card.Content>
-
+ */}
 
 
 

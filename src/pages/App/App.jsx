@@ -5,11 +5,7 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import Dashboard from "../Dashboard/Dashboard";
-import AssetDetailPage from "../AssetDetailPage/AssetDetailPage";
 import NewAssetPage from "../NewAssetPage/NewAssetPage";
-import NewServicePage from "../NewServicePage/NewServicePage";
-import PartsListPage from "../PartsListPage/PartsListPage";
-import NewPartPage from "../NewPartPage/NewPartPage";
 
 import userService from "../../utils/userService";
 
@@ -34,17 +30,8 @@ function App() {
     return (
       <Routes>
 
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/:username/:asset' element={<AssetDetailPage />} />
+        <Route path='/' element={<Dashboard user={user} handleLogout={handleLogout} />} />
         <Route path='/newasset' element={<NewAssetPage />} />
-        <Route path='/:username/:asset/newservice' element={<NewServicePage />} />
-        <Route path='/:username/:asset/partslist' element={<PartsListPage />} />
-        <Route path='/:username/:asset/newpart' element={<NewPartPage />} />
-        {/* <Route path="/logout" handleLogout={handleLogout} /> */}
-        <Route 
-          path="/logout" 
-          element={handleLogout={handleLogout}} 
-        />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

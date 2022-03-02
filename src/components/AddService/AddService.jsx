@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
-import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react'
+import { useNavigate, Link } from "react-router-dom";
+import { Button, Dropdown, DropdownItem, DropdownMenu, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
 export default function AddServiceForm(props){
-  const [selectedFile, setSelectedFile] = useState('')
+  // const navigate = useNavigate();
+  // const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
     serviceDate: '',
     description: '',
@@ -11,9 +12,9 @@ export default function AddServiceForm(props){
     nextServiceDue: ''
   })
 
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
-  }
+  // function handleFileInput(e){
+  //   setSelectedFile(e.target.files[0])
+  // }
 
 
   function handleChange(e){
@@ -31,11 +32,13 @@ export default function AddServiceForm(props){
     formData.append('description', state.description)
     formData.append('mileage', state.mileage)
     formData.append('nextServiceDue', state.nextServiceDue)
-    formData.append('photo', selectedFile); // this key matches the key in multer in the 
+  //  formData.append('photo', selectedFile); // this key matches the key in multer in the 
 	// routes/api/posts create route upload.single('photo')
 
 	props.handleAddService(formData)
     // Have to submit the form now! We need a function!
+
+    // navigate("/");
   }
 
 
@@ -79,13 +82,13 @@ export default function AddServiceForm(props){
                   onChange={handleChange}
                   required
               />   
-              <Form.Input
+              {/* <Form.Input
                 className="form-control"
                 type="file"
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
-              />   
+              />    */}
               <Button
                 type="submit"
                 className="btn"
