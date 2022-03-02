@@ -7,7 +7,7 @@ export default function PageHeader(){
     return (
         <Segment>
             <Header as='h2' >
-              UpKeep - World's <span>CRUD</span>diest Asset <span>MERN</span>tenance Tool
+                UpKeep - World's <span>CRUD</span>diest Asset <span>MERN</span>tenance Tool
             </Header>
         </Segment>
     )

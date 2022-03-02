@@ -81,12 +81,12 @@ export default function SignUpPage(props) {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as="h1"><span>UpKeep</span></Header>
+
 
       <Header as="h2">World's <span>CRUD</span>diest <span>MERN</span>tenance Tool</Header>
 
         <Header as="h2" textAlign="center">
-          <Image src="logo192.png" /> Join Today!
+          <Image src="logo192.png" /> Join <span>UpKeep</span> Today!
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
