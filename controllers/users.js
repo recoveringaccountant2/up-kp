@@ -36,10 +36,6 @@ async function dashboard(req, res){
 async function signup(req, res) {
   console.log(req.body, " <-- signup() req.body", req.file, " <-- signup() req.file");
 
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
-
   // FilePath unique name to be saved to our bucket
   const filePath = `${uuidv4()}/${req.file.originalname}`
   const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
@@ -49,6 +45,7 @@ async function signup(req, res) {
   s3.upload(params, async function (err, data){
     console.log(err, "<-- first err from signup function")
     console.log(data, '<- from aws') // data.Location is our photoUrl that exists on aws
+
     const user = new User({ ...req.body, photoUrl: data.Location});
 
     try {

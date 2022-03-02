@@ -25,7 +25,7 @@ const assetSchema = new mongoose.Schema({
   year: Number,
   make: String,
   model: String,
-  description: String,
+  // description: String,
   inServiceDate: Date,
   beginningMileage: Number,
   currentMileage: Number,

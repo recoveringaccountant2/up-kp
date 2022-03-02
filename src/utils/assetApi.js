@@ -28,7 +28,7 @@ export function getAll() {
 	.then(res => res.json());
   }
 
-export function removeAsset(id){
+export function deleteAsset(id){
     return fetch(`${BASE_URL}/${id}`, {
         method: 'DELETE',
         headers: {

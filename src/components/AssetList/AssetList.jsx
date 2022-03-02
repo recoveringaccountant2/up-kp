@@ -15,4 +15,5 @@ export default function AssetList({ assets, numPhotosCol }) {
       })}
     </Card.Group>
   );
+
 }

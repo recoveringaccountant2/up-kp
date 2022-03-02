@@ -28,7 +28,9 @@ function setToken(token) {
   }
   
   function removeToken() {
+    console.log("tokenService.js removeToken function log 1/2")
     localStorage.removeItem('token');
+    console.log("tokenService.js removeToken function log 2/2")
   }
   
   export default {

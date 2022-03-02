@@ -12,27 +12,29 @@ module.exports = {
     deleteAsset
 }
 
-function create(req, res){
+async function create(req, res){
 	console.log(req.body, " <- asset create req.body", req.file, "<- asset create photo", req.user, "<- asset create req.user")
     try {
         const filePath = `${uuidv4()}/${req.file.originalname}`
         const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
         console.log(params, "<- params from asset create function")
+
+
         s3.upload(params, async function(err, data){
             console.log(err, "<- first err from asset create function")
             console.log(data, '<- from aws asset create function') // data.Location is our photoUrl that exists on aws
-        
 
             const asset = await Asset.create({
                 user: req.user,
-                type: req.type,
-                year: req.year,
-                make: req.make,
-                model: req.model,
-                description: req.description,
-                inServiceDate: req.inServiceDate,
-                beginningMileage: req.beginningMileage,
-                currentMileage: req.currentMileage,
+                nickName: req.body.nickName,
+                // type: req.body.type,
+                year: req.body.year,
+                make: req.body.make,
+                model: req.body.model,
+                // description: req.body.description,
+                inServiceDate: req.body.inServiceDate,
+                beginningMileage: req.body.beginningMileage,
+                currentMileage: req.body.currentMileage,
                 photoUrl: data.Location
             });
 
@@ -55,15 +57,27 @@ async function index(req, res){
     }
 }
 
-async function deleteAsset(req, res){
-    try {
+// async function deleteAsset(req, res){
+//     try {
         
-        const asset = await Asset.findOne({'assets._id': req.params.id, 'assets.username': req.user.username});
-        asset.remove(req.params.id) // mutating a document
-        // req.params.id is the like id 
-        await asset.save() // after you mutate a document you must save
-        res.json({data: 'asset removed'})
-    } catch(err){
-        res.status(400).json({err})
+//         const asset = await Asset.findOne({'assets._id': req.params.id, 'assets.username': req.user.username});
+//         asset.remove(req.params.id) // mutating a document
+//         // req.params.id is the like id 
+//         await asset.save() // after you mutate a document you must save
+//         res.json({data: 'asset removed'})
+//     } catch(err){
+//         res.status(400).json({err})
+//     }
+// }
+
+async function deleteAsset(req, res) {
+    try {
+      await Asset.deleteOne({
+        _id: req.params.id
+      });
+      res.status(200).json({});
+    } catch (err) {
+      console.log(err, "error in assets controller deleteAsset function");
+      res.status(400).json({err})
     }
-}
+  }

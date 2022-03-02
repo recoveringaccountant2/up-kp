@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-
+import { useNavigate, Link } from "react-router-dom";
 import { Button, Dropdown, DropdownItem, DropdownMenu, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
 export default function AddAssetForm(props){
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
     nickName: '',
-    assetType: '',
+    // assetType: '',
     year: '',
     make: '',
     model: '',
-    description: '',
+    // description: '',
     inServiceDate: '',
     beginningMileage: '',
     currentMileage: ''
@@ -33,19 +34,21 @@ export default function AddAssetForm(props){
              
     const formData = new FormData()
     formData.append('nickName', state.nickName)
-    formData.append('assetType', state.assetType)
+    // formData.append('assetType', state.assetType)
     formData.append('year', state.year)
     formData.append('make', state.make)
     formData.append('model', state.model)
-    formData.append('description', state.description)
+    // formData.append('description', state.description)
     formData.append('inServiceDate', state.inServiceDate)
     formData.append('beginningMileage', state.beginningMileage)
     formData.append('currentMileage', state.currentMileage)
     formData.append('photo', selectedFile); // this key matches the key in multer in the 
 	// routes/api/posts create route upload.single('photo')
 
-	props.handleAddAsset(formData)
+	props.handleAddAsset(formData);
     // Have to submit the form now! We need a function!
+
+  navigate("/");
   }
 
 
@@ -114,14 +117,14 @@ export default function AddAssetForm(props){
                   onChange={handleChange}
                   // required
               />   
-              <Form.Input
+              {/* <Form.Input
                   className="form-control"
                   name="description"
                   value={state.description}
                   placeholder="description"
                   onChange={handleChange}
                   // required
-              />   
+              />    */}
               <Form.Input
                   className="form-control"
                   name="inServiceDate"

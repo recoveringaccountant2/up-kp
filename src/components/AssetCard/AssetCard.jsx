@@ -1,8 +1,19 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import * as assetApi from "../../utils/assetApi";
+import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 
 function AssetCard({asset, isDashboard, removeAsset}) { 
+
+  function deleteAsset(e) {
+    e.preventDefault()
+    try {
+      assetApi.deleteAsset(asset._id)
+    } catch (err) {
+      console.log(err.message, "<- error from delete asset function in asset card");
+    }
+  }
+
 
   return (
     <Card key={asset._id}>
@@ -20,16 +31,19 @@ function AssetCard({asset, isDashboard, removeAsset}) {
 
 
 
-          {/* <Card.Header floated="right" text={ asset }>
+          <Card.Header floated="right" text={ asset }>
 
-          {`${asset.user}`}
+          {/* {`${asset.user}`}
           {`${asset.nickName}`}
           {`${asset.year}`}
           {`${asset.make}`}
-          {`${asset.model}`}
+          {`${asset.model}`} */}
+
+          {`${asset.nickName}`}
+          {`${asset._id}`}
           {`${asset.photoUrl}`}
 
-          </Card.Header> */}
+          </Card.Header> 
 
 
       </Card.Content>
@@ -65,6 +79,9 @@ function AssetCard({asset, isDashboard, removeAsset}) {
         <Icon name={'trash'} size='large' color={'grey'} />
         {/* {asset.services.length}  */}
         Delete Asset
+
+        <Button icon='trash alternate' onClick={deleteAsset} />
+
 
       </Card.Content>
 

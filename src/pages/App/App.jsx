@@ -23,8 +23,11 @@ function App() {
   }
 
   function handleLogout() {
+    console.log("app.jsx handleLogout function log 1/3")
     userService.logout();
+    console.log("app.jsx handleLogout function log 2/3")
     setUser(null);
+    console.log("app.jsx handleLogout function log 3/3")
   }
 
   if (user) {
@@ -33,11 +36,15 @@ function App() {
 
         <Route path='/' element={<Dashboard />} />
         <Route path='/:username/:asset' element={<AssetDetailPage />} />
-        <Route path='/:username/newasset' element={<NewAssetPage />} />
+        <Route path='/newasset' element={<NewAssetPage />} />
         <Route path='/:username/:asset/newservice' element={<NewServicePage />} />
         <Route path='/:username/:asset/partslist' element={<PartsListPage />} />
         <Route path='/:username/:asset/newpart' element={<NewPartPage />} />
-
+        {/* <Route path="/logout" handleLogout={handleLogout} /> */}
+        <Route 
+          path="/logout" 
+          element={handleLogout={handleLogout}} 
+        />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
