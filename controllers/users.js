@@ -11,27 +11,26 @@ const BUCKET = process.env.BUCKET;
 
 module.exports = {
   signup,
-  login,
-  dashboard
+  login
+  // dashboard
 };
 
-async function dashboard(req, res){
-  try {
-    // First find the user using the params from the request
-    // findOne finds first match, its useful to have unique usernames!
-    const user = await User.findOne({username: req.params.username})
-    // Then find all the posts that belong to that user
-    if(!user) return res.status(404).json({err: 'User not found'})
+// async function dashboard(req, res){
+//   try {
+//     // First find the user using the params from the request
+//     // findOne finds first match, its useful to have unique usernames!
+//     const user = await User.findOne({username: req.params.username})
+//     // Then find all the posts that belong to that user
+//     if(!user) return res.status(404).json({err: 'User not found'})
 
-    const assets = await Asset.find({user: user._id}).populate("user").exec();
-    console.log(assets, ' these are the assets')
-    res.status(200).json({assets: assets, user: user})
-  } catch(err){
-    console.log(err)
-    res.status(400).json({err})
-  }
-}
-
+//     const assets = await Asset.find({user: user._id}).populate("user").exec();
+//     console.log(assets, ' these are the assets')
+//     res.status(200).json({assets: assets, user: user})
+//   } catch(err){
+//     console.log(err)
+//     res.status(400).json({err})
+//   }
+// }
 
 async function signup(req, res) {
   console.log(req.body, " <-- signup() req.body", req.file, " <-- signup() req.file");
@@ -58,8 +57,6 @@ async function signup(req, res) {
       res.status(400).json(err);
     }
   });
-  //////////////////////////////////////////////////////////////////////////////////
- 
 }
 
 async function login(req, res) {
@@ -81,7 +78,6 @@ async function login(req, res) {
     return res.status(401).json(err);
   }
 }
-
 
 /*----- Helper Functions -----*/
 

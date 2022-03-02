@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Segment, Icon } from "semantic-ui-react";
+import { Header, Segment, Icon, Image } from "semantic-ui-react";
 
 function Nav({ user, handleLogout }) {
   return (
@@ -19,10 +19,19 @@ function Nav({ user, handleLogout }) {
       </Header>
       <Header as="h2" floated="right">
         <Link to="/" >
-          [<Icon name="smile outline"></Icon>Hiya {user.firstName}!] &nbsp; &nbsp;
+          [<Image
+            src={
+              user?.photoUrl
+                ? user?.photoUrl
+                : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+            }
+            avatar
+            size="mini"
+          ></Image>
+          &nbsp; {user.firstName}] &nbsp; &nbsp;
         </Link>
         <Link to="/" onClick={handleLogout}>
-        [<Icon name="hand peace outline"></Icon>Logout]
+          [<Icon name="hand peace outline"></Icon>Logout]
         </Link>
       </Header>
     </Segment>

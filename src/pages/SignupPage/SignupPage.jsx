@@ -19,8 +19,6 @@ export default function SignUpPage(props) {
   })
 
   const [selectedFile, setSelectedFile] = useState('')
-
-
   const navigate = useNavigate() // navigate hook from react-router
 
   function handleChange(e) {
@@ -54,7 +52,6 @@ export default function SignUpPage(props) {
     }
 
     console.log(formData, ' <--- This Will show nothing!!')
-
     console.log(formData.forEach((item) => console.log(item)), " <-- this is how you look inside form data")
 
     try {
@@ -81,16 +78,12 @@ export default function SignUpPage(props) {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-
-
       <Header as="h2">World's <span>CRUD</span>diest <span>MERN</span>tenance Tool</Header>
-
         <Header as="h2" textAlign="center">
           <Image src="logo192.png" /> Join <span>UpKeep</span> Today!
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
-
             <Form.Input
               name="username"
               placeholder="username"
@@ -98,7 +91,6 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-
             {/* <Form.Group> */}
             <Form.Input
               name="firstName"
@@ -115,7 +107,6 @@ export default function SignUpPage(props) {
               required
             />
             {/* </Form.Group> */}
-
             <Form.Input
               type="email"
               name="email"
@@ -135,13 +126,11 @@ export default function SignUpPage(props) {
             />
             {/* 
               <Checkbox
-
                 name="smsNotifications"
                 label="Receive SMS notifications? Carrier charges may apply."
                 // value={state.smsNotifications}
                 checked={state.smsNotifications}
                 onChange={handleChange}
-
               />
             </Form.Group> */}
             <Form.Input
@@ -160,10 +149,9 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-
-
             <Form.Field>
               <Form.Input
+                label="Please select a profile picture."
                 type="file"
                 name="photo"
                 placeholder="upload image"
@@ -171,8 +159,6 @@ export default function SignUpPage(props) {
                 required
               />
             </Form.Field>
-
-
             <Button
               fluid
               size="large"

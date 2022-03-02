@@ -4,7 +4,6 @@ const servicesCtrl = require('../../controllers/services')
 const multer = require('multer');
 const upload = multer(); // <- handles multipart/formdata requests(photos)
 
-
 router.post('/assets/:id/services', isAuthenticated, servicesCtrl.create)
 // router.get('/', isAuthenticated, assetsCtrl.index);
 router.delete('/services/:id', isAuthenticated, servicesCtrl.deleteService)

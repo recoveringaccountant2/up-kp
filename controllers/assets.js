@@ -1,5 +1,4 @@
 const Asset = require('../models/asset');
-
 const { v4: uuidv4 } = require('uuid');
 const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3();
@@ -18,7 +17,6 @@ async function create(req, res){
         const filePath = `${uuidv4()}/${req.file.originalname}`
         const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer};
         console.log(params, "<- params from asset create function")
-
 
         s3.upload(params, async function(err, data){
             console.log(err, "<- first err from asset create function")
@@ -50,12 +48,26 @@ async function create(req, res){
 
 async function index(req, res){
     try {
-        const assets = await Asset.find({}).populate('user').exec()
+        // const assets = await Asset.find({}).populate('user').exec()
+        // console.log(req.body, "<- req.body from ctrl asset index function", req.body.user, "<- req.body.user from ctrl asset index function")
+        // console.log(req.user._id, "<- req.user._id from ctrl asset index function")
+        // console.log(Asset.find(), "<-- you are here")
+        const assets = await Asset.find({user: req.user._id}).sort({nickNake: -1}).lean();
+        // console.log(assets, "assets from ctrl asset index function")
         res.status(200).json({assets})
     } catch(err){
         res.json({err})
     }
 }
+
+// async function index(req, res){
+//     try {
+//         const assets = await Asset.find({}).populate('user').exec()
+//         res.status(200).json({assets})
+//     } catch(err){
+//         res.json({err})
+//     }
+// }
 
 // async function deleteAsset(req, res){
 //     try {

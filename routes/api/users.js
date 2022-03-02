@@ -7,9 +7,7 @@ const upload = multer();
 router.post('/signup', upload.single('photo'), usersCtrl.signup);
 router.post('/login', usersCtrl.login);
 
-
 /*---------- Protected Routes ----------*/
-router.get('/', isAuthenticated, usersCtrl.dashboard);
 
 function isAuthenticated(req, res, next){
 	if(req.user){

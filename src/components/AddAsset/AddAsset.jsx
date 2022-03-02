@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
-import { Button, Dropdown, DropdownItem, DropdownMenu, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+// import { useNavigate } from "react-router-dom";
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 
 export default function AddAssetForm(props){
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
     nickName: '',
@@ -20,7 +20,6 @@ export default function AddAssetForm(props){
   function handleFileInput(e){
     setSelectedFile(e.target.files[0])
   }
-
 
   function handleChange(e){
     setState({
@@ -48,12 +47,10 @@ export default function AddAssetForm(props){
 	props.handleAddAsset(formData);
     // Have to submit the form now! We need a function!
 
-  navigate("/");
+  // navigate("/");
   }
 
-
   return (
-    
     <Grid textAlign='center' verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Segment>
@@ -68,7 +65,6 @@ export default function AddAssetForm(props){
                   onChange={handleChange}
                   required
               />   
-
 {/* 
               <Form.Input>
                 className="form-control"
@@ -92,7 +88,6 @@ export default function AddAssetForm(props){
                 </Dropdown>
               </Form.Input>   
  */}
-
               <Form.Input
                   className="form-control"
                   name="year"

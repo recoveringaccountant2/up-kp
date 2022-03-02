@@ -16,7 +16,6 @@ export default function AddServiceForm(props){
   //   setSelectedFile(e.target.files[0])
   // }
 
-
   function handleChange(e){
     setState({
       ...state,
@@ -41,15 +40,12 @@ export default function AddServiceForm(props){
     // navigate("/");
   }
 
-
   return (
     
     <Grid textAlign='center' verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Segment>
-        
             <Form  autoComplete="off" onSubmit={handleSubmit}>
-            
               <Form.Input
                   className="form-control"
                   name="serviceDate"

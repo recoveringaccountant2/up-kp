@@ -2,7 +2,6 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/users/';
 
-
 // NOTE THIS IS configured to send of a multi/part form request
 // aka photo 
 function signup(user) {
@@ -46,7 +45,6 @@ function login(creds) {
   })
   .then(({token}) => tokenService.setToken(token));
 }
-
 
 export default {
   signup, 

@@ -33,7 +33,6 @@ userSchema.set('toObject', {
   }
 });
 
-
 // DO NOT DEFINE instance methods with arrow functions, 
 // they prevent the binding of this
 userSchema.pre('save', function(next) {

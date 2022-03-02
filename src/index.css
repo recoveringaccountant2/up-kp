@@ -17,5 +17,5 @@ h2 {
 }
 
 h2 > span {
-  color: rgb(180, 55, 44);
+  color: red;
 }

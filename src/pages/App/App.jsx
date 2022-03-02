@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import Dashboard from "../Dashboard/Dashboard";
 import NewAssetPage from "../NewAssetPage/NewAssetPage";
-
 import userService from "../../utils/userService";
 
 function App() {
@@ -19,17 +17,13 @@ function App() {
   }
 
   function handleLogout() {
-    console.log("app.jsx handleLogout function log 1/3")
     userService.logout();
-    console.log("app.jsx handleLogout function log 2/3")
     setUser(null);
-    console.log("app.jsx handleLogout function log 3/3")
   }
 
   if (user) {
     return (
       <Routes>
-
         <Route path='/' element={<Dashboard user={user} handleLogout={handleLogout} />} />
         <Route path='/newasset' element={<NewAssetPage />} />
         <Route

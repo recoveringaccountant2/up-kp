@@ -3,15 +3,7 @@ import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
 
 export default function LoginPage(props) {
   const [error, setError] = useState("");
@@ -19,9 +11,7 @@ export default function LoginPage(props) {
     email: "",
     password: "",
   });
-
   const navigate = useNavigate();
-
   function handleChange(e) {
     setState({
       ...state,
@@ -31,7 +21,6 @@ export default function LoginPage(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       await userService.login(state);
       // Route to wherever you want!
